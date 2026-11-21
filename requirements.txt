@@ -1,0 +1,6 @@
+# 必需依赖
+feedparser
+PyYAML
+
+# 可选：启用 LLM 智能日报时安装（需要 ANTHROPIC_API_KEY 环境变量）
+# anthropic

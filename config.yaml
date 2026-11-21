@@ -1,0 +1,38 @@
+# ============================================================
+# RSSHub 每日采集配置
+# 路由为示例，请以 https://docs.rsshub.app/zh 的最新路由为准，
+# 替换成你实际想订阅的源（格式：分类名下的 URL 列表）。
+# ============================================================
+
+feeds:
+  社会:
+    - https://rsshub.rss3.workers.dev/weibo/search/hot      # 微博热搜
+    - https://rsshub.rss3.workers.dev/zhihu/hot              # 知乎热榜
+    - https://rsshub.rss3.workers.dev/baidu/top              # 百度热搜
+  科技:
+    - https://rsshub.rss3.workers.dev/36kr/newsflashes       # 36氪快讯
+  金融:
+    - https://rsshub.rss3.workers.dev/cls/telegraph          # 财联社电报
+  文化:
+    - https://www.douban.com/feed/review/movie               # 豆瓣影评（原生RSS，无需代理）
+    - https://rsshub.rss3.workers.dev/bilibili/weekly        # B站每周必看
+    - https://rsshub.rss3.workers.dev/bilibili/hot-search    # B站热搜
+  吸引眼球:
+    - https://rsshub.rss3.workers.dev/tophub/DpQvNABoNE      # 抖音总榜
+    - https://rsshub.rss3.workers.dev/tophub/K7GdaMgdQy      # 抖音热点榜
+
+settings:
+  db_path: data/items.db        # 本地数据库（相对本目录）
+  digest_dir: digest            # 日报输出目录（相对本目录）
+  lookback_hours: 0             # 日期过滤：0=不过滤（适合热搜/排行类源，直接取当前榜单）；设为 N 则只留最近 N 小时发布的条目
+  top_n_per_category: 20        # 本地汇总时每个分类最多展示条数
+
+  # 代理（用于访问 rsshub.app 等被墙/被限制的站点）。
+  # 已根据你本机的 Clash Verge 自动填好（混合端口 7897）；换了端口或不用代理时改这里。
+  proxy: http://127.0.0.1:7897
+
+  # LLM 统一处理（可选）：
+  #   auto = 检测到 ANTHROPIC_API_KEY 就用 Claude 生成智能日报，否则本地汇总
+  #   off  = 永远本地汇总（不调用大模型）
+  llm_mode: auto
+  llm_model: claude-opus-5-5
